@@ -3,17 +3,29 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors({
-  origin: 'https://lavenderblush-gazelle-697666.hostingersite.com', 
+  origin: '*', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
 }));
-
-
 app.use(express.json());
 
+const Resource = require('./models/Resource');
 
-app.get('/api/test', (req, res) => {
-  res.json({ message: 'La API está funcionando correctamente' });
+app.get('/resources', async (req, res) => {
+  try {
+    const resources = await Resource.findAll(); 
+    res.json(resources);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener los recursos' });
+  }
+});
+
+app.post('/resources', async (req, res) => {
+  try {
+    const resource = await Resource.create(req.body);
+    res.status(201).json(resource);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al crear el recurso' });
+  }
 });
 
 const PORT = process.env.PORT || 4000;
