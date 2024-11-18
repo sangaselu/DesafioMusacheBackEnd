@@ -1,17 +1,19 @@
 const express = require('express');
-const sequelize = require('./utils/database');
+const bodyParser = require('body-parser');
 const Resource = require('./models/Resource');
 
 const app = express();
-app.use(express.json());
+app.use(bodyParser.json());
 
-app.get('/resources', async (req, res) => {
-  const resources = await Resource.findAll();
-  res.json(resources);
+app.post('/resources', async (req, res) => {
+  try {
+    const { title, description, imageUrl, youtubeUrl } = req.body;
+    const resource = await Resource.create({ title, description, imageUrl, youtubeUrl });
+    res.status(201).json(resource);
+  } catch (error) {
+    console.error('Error al agregar recurso:', error);
+    res.status(500).json({ message: 'Error interno del servidor' });
+  }
 });
 
-sequelize.sync()
-  .then(() => console.log('Base de datos sincronizada'))
-  .catch((err) => console.error('Error al sincronizar la base de datos:', err));
-
-module.exports = app; 
+module.exports = app;
