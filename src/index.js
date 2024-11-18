@@ -1,41 +1,22 @@
 const express = require('express');
 const cors = require('cors');
-const Resource = require('./models/Resource');
-const sequelize = require('./utils/database');
-
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://lavenderblush-gazelle-697666.hostingersite.com', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+
 app.use(express.json());
 
-app.get('/api/resources', async (req, res) => {
-  try {
-    const resources = await Resource.findAll();
-    res.json(resources);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al obtener los recursos' });
-  }
+
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'La API está funcionando correctamente' });
 });
 
-
-app.post('/api/resources', async (req, res) => {
-  try {
-    const newResource = await Resource.create(req.body);
-    res.status(201).json(newResource);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al guardar el recurso' });
-  }
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
-
-
-sequelize
-  .sync()
-  .then(() => {
-    console.log('Conexión a la base de datos establecida');
-    app.listen(4000, () => {
-      console.log('Servidor corriendo en http://localhost:4000');
-    });
-  })
-  .catch((error) => console.error('Error al conectar con la base de datos:', error));
