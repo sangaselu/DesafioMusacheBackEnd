@@ -116,4 +116,7 @@ Probar en este caso que esté respondiendo correctamente con methods creados que
 
 <img width="917" alt="image" src="https://github.com/user-attachments/assets/744766ae-db60-4396-948a-618e7abc7a23">
 
+# Base de datos de manera remota
+- En función del servicio de MySQL Remote del hosting, se obtiene la ip del hosting Mysql Remote para colocarlo en nuestra base de datos de manera local que sería nuestro dbhost, dbuser, dbpssword, puerto 3306 que suele ser para MySql. Ingresar el sql colocado pasos anteriores.
+- Probar conexión y esperar resultado de "Conexión establecida".
 
