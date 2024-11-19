@@ -114,5 +114,6 @@ npm start
 
 Probar en este caso que esté respondiendo correctamente con methods creados que se verá reflejado en la app publicada por parte del front como también su propia ruta
 
-<img width="917" alt="image" src="https://github.com/user-attachments/assets/66c98965-694f-4029-a55b-3e2bc6525e6e">
+<img width="917" alt="image" src="https://github.com/user-attachments/assets/744766ae-db60-4396-948a-618e7abc7a23">
+
 
