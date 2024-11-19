@@ -1,5 +1,5 @@
 # Desafío Musache Backend
-
+Configuración de manera local
 ## Requisitos Previos
 - Node.js (versión 14 o superior)
 - npm (incluido con Node.js)
@@ -93,3 +93,26 @@ npm install --save-dev babel-jest @babel/core @babel/preset-env
 npm test
 ```
 ![me](resourceApi.test.js-MusachePrueba-Visual-Studio-Code-2024-11-19-14-51-55.gif)
+
+# Despliegue de api en Render on Live
+- Crear cuenta o loguearse, de preferencia con github en Render https://dashboard.render.com
+- Conectar con el repositorio en especifico para que pueda desplegar correctament y sea más fácil de detectar el commit reciente
+- Configurar las variables de entorno para que detecta la base de datos (hostname, host, dbname, pssword), puerto
+- Configurar el Build Command para que puede hacer la instalación correspondiente de packages para el proyecto y el Start command, para poder levantar el API.
+    En este caso se usará NPM por el gestor que maneja con REACT
+Build Command
+```Build Command
+npm install
+```
+Start Command
+```Build Command
+npm start
+```
+- Configurar el .env creado apuntando hacia el link generado por Render que será consumir la API
+- Realizar deploy
+![image](https://github.com/user-attachments/assets/400282eb-01ac-4a85-ab24-30c1953d95e1)
+
+Probar en este caso que esté respondiendo correctamente con methods creados que se verá reflejado en la app publicada por parte del front como también su propia ruta
+
+<img width="917" alt="image" src="https://github.com/user-attachments/assets/66c98965-694f-4029-a55b-3e2bc6525e6e">
+
